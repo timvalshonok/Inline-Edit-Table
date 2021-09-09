@@ -1,0 +1,76 @@
+<template>
+    <div class="slds-table--edit_container">
+        <table class="slds-table slds-table--edit slds-table--bordered">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th>
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                    <th>
+                        <div class="slds-truncate" title="Rating">Rating</div>
+                    </th>
+                    <th>
+                        <div title="Delete">Delete</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accounts} for:item="account">
+                    <tr class="slds-hint-parent" key={account.Id} data-trid={account.Id} >
+                        <td class="slds-cell-edit" data-tdid={account.idName} data-tds="tabletds">
+                            <span class="slds-grid slds-grid_align-spread " >
+                                <span class="slds-truncate">{account.Name}</span>
+                                <span class="triggerContainer" data-tdid={account.idName} >
+                                <button onclick={editField}  data-inputid={account.idName}
+                                    data-accountname={account.Name} data-buttonid="id"
+                                    class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small editIcon">
+                                    <svg data-button="edit"  class="slds-button__icon slds-button__icon_edit"
+                                        data-svgid={account.idName}>
+                                        <use
+                                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.31.2-1#edit">
+                                        </use>
+                                    </svg>
+                                </button>
+                            </span>
+                                <lightning-input data-editid={account.idName} onfocusout={hideEditField}
+                                    value={account.Name} data-accountid={account.Id} class="slds-hidden"
+                                    data-element="Account">
+                                </lightning-input>
+                            </span>
+                        </td>
+                        <td class="slds-cell-edit cellContainer" data-tdid={account.idRating} data-tds="tabletds">
+                            <span class="slds-grid slds-grid_align-spread">
+                                <span class="slds-truncate">{account.Rating}</span>
+                                <button onclick={openRatingPickList} data-inputid={account.idRating}
+                                    data-accountid={account.Id} data-buttonid="id"
+                                    class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small editIcon">
+                                    <svg  aria-hidden="true" class="slds-button__icon   slds-button__icon_edit"  
+                                        data-svgid={account.idRating} >
+                                        <use
+                                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.31.2-1#edit">
+                                        </use>
+                                    </svg>
+                                </button>
+                                <c-rating-edit account={account} onrerenderaccounts={reRenderAccounts}
+                                    onenablebuttons={enableButtons} onaccountoptions={accountOptions}>
+                                </c-rating-edit>
+                            </span>
+                        </td>
+                        <td>
+                            <button class="slds-button slds-button_icon" data-accountid={account.Id}
+                                onclick={deleteField}>
+                                <svg class="slds-button__icon slds-button__icon_large">
+                                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#delete"></use>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div data-buttonsid="cancelSave" class="slds-hidden slds-docked-form-footer">
+            <button class="slds-button slds-button_neutral" onclick={cancel} title="Cancel">Cancel</button>
+            <button class="slds-button slds-button_brand" onclick={saveChanges} title="Save">Save</button>
+        </div>
+    </div>
+</template>

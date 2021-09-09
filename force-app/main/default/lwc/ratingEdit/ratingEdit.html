@@ -1,0 +1,13 @@
+<template>
+    <div class="slds-form-element slds-hidden" data-maindiv={account.Id}>
+        <div class="slds-form-element__control">
+            <div class="slds-select_container">
+                <select class="slds-select" onfocusout={closeRatingPickList}>
+                    <template for:each={options} for:item="option">
+                        <option key={option.label} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+        </div>
+    </div>
+</template>
