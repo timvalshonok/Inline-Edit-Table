@@ -102,7 +102,7 @@ export default class InlineTable extends LightningElement {
         let accountToUpdate;
         const currentAccount = this.currentAccountId;
         let updatedAccounts = this.accounts;
-        accountToUpdate = updatedAccounts.find(updatedAccounts => updatedAccounts.Id === currentAccount);
+        accountToUpdate = updatedAccounts.find(updatedAccounts => updatedAccounts.Id == currentAccount);
        
         updateField({ updatedAccount: accountToUpdate })
             .then(() => {
