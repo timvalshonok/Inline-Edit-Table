@@ -14,17 +14,17 @@ public with sharing class TestAccountsController {
         System.assertEquals(expected, actual);
     }
 
-    @isTest public static void testUpdateField() {
-        Account account = new Account(Name = 'Test', Rating = 'Cold');
-        insert account;
-        Account updatedAccount = new Account(Id = account.Id, Name = 'Tested', Rating = 'Warm');
+    // @isTest public static void testUpdateField() {
+    //     Account account = new Account(Name = 'Test', Rating = 'Cold');
+    //     insert account;
+    //     Account updatedAccount = new Account(Id = account.Id, Name = 'Tested', Rating = 'Warm');
 
-        test.startTest();
-        Account actual = AccountsController.updateField(updatedAccount);
-        test.stopTest();
+    //     test.startTest();
+    //     Account actual = AccountsController.updateField(updatedAccount);
+    //     test.stopTest();
 
-        Account expected = [SELECT Name, Rating FROM Account WHERE Id = :account.Id];
-        System.assertEquals(expected, actual);
-    }
+    //     Account expected = [SELECT Name, Rating FROM Account WHERE Id = :account.Id];
+    //     System.assertEquals(expected, actual);
+    // }
 
 }

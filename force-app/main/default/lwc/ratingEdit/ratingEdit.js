@@ -9,8 +9,8 @@ export default class RatingEdit extends LightningElement {
     previousValue;
 
     @api openRatingPickList() {
-        let mainDiv = this.template.querySelector('div[data-maindiv="' + this.account.Id + '"]');
-        mainDiv.classList.toggle("slds-hidden");
+        let div = this.template.querySelector('div[data-div="' + this.account.Id + '"]');
+        div.classList.toggle("slds-hidden");
         let select = this.template.querySelector('select');
         select.focus();
         select.value = this.account.Rating;
@@ -18,12 +18,11 @@ export default class RatingEdit extends LightningElement {
     }
 
     closeRatingPickList() {
-        let mainDiv = this.template.querySelector('div[data-maindiv="' + this.account.Id + '"]');
-        mainDiv.classList.toggle("slds-hidden");
+        let div = this.template.querySelector('div[data-div="' + this.account.Id + '"]');
+        div.classList.toggle("slds-hidden");
         let select = this.template.querySelector('select');
-        const isEqual = (this.previousValue === select.value);
 
-        if (isEqual) {
+        if (this.previousValue === select.value) {
             this.dispatchEvent(new CustomEvent('enablebuttons'));
         } else {
             this.account.Rating = select.value;
@@ -37,9 +36,7 @@ export default class RatingEdit extends LightningElement {
     @wire(getPickListValues)
     getPickList({ error, data }) {
         if (data) {
-            for (let i = 0; i < data.length; i++) {
-                this.options = [...this.options, {label: data[i].label, value: data[i].value}];
-            }
+            this.options = data.map(options => options, {label: data.label, value: data.value})
             this.error = undefined;
         } else if (error) {
             this.error = error;
