@@ -1,6 +1,6 @@
 @isTest
 public with sharing class TestAccountsController {
-    
+
     @TestSetup
     static void setup(){
         
@@ -35,12 +35,18 @@ public with sharing class TestAccountsController {
     }
 
     @isTest public static void testGetPickListValues() {
-        
+
+        List <Map<String, String>> pickListValues = new List <Map<String, String>> {
+            new Map<String, String>{'label'=>'Hot', 'value'=>'Hot'}, 
+            new Map<String, String>{'label'=>'Warm', 'value'=>'Warm'}, 
+            new Map<String, String>{'label'=>'Cold', 'value'=>'Cold'}
+        };
+
         test.startTest();
         List<Map<String, String>> actual = AccountsController.getPickListValues();
         test.stopTest();
 
-        List<Map<String, String>> expected = AccountsController.getPickListValues();
-        System.assertEquals(expected, actual, 'Should be list of options');
+        List<Map<String, String>> expected = pickListValues;
+        System.assertEquals(expected, actual, 'Should contain options "label" and "value"');
     }
 }
