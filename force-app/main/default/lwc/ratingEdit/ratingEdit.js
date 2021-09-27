@@ -2,6 +2,7 @@ import { LightningElement, wire, api } from 'lwc';
 import getPickListValues from '@salesforce/apex/AccountsController.getPickListValues';
 
 export default class RatingEdit extends LightningElement {
+    
     @api account;
     items = [];
     value = '';
