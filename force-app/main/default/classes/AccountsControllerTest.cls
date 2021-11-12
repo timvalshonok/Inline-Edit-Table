@@ -1,5 +1,5 @@
 @isTest
-public with sharing class TestAccountsController {
+public with sharing class AccountsControllerTest {
 
     @TestSetup
     static void setup(){
@@ -10,7 +10,7 @@ public with sharing class TestAccountsController {
         insert accounts;
     }
     
-    @isTest public static void testGetAccounts() {
+    @isTest public static void getAccountsTest() {
 
         test.startTest();
         List<Account> actual = AccountsController.getAccounts();
@@ -20,7 +20,7 @@ public with sharing class TestAccountsController {
         System.assertEquals(expected, actual, 'Should be list of accounts with columns Name, Rating');
     }
 
-    @isTest public static void testUpdateField() {
+    @isTest public static void updateFieldTest() {
 
         Account account = [SELECT Id, Name, Rating FROM Account WHERE Name='Test' AND Rating='Cold' LIMIT 1];
         account.Name = 'Tested';
@@ -34,7 +34,7 @@ public with sharing class TestAccountsController {
         System.assertEquals(expected, account, 'Should be account with updated Name, Rating columns ("Tested", "Warm")');
     }
 
-    @isTest public static void testGetPickListValues() {
+    @isTest public static void getPickListValuesTest() {
 
         List <Map<String, String>> pickListValues = new List <Map<String, String>> {
             new Map<String, String>{'label'=>'Hot', 'value'=>'Hot'}, 
