@@ -2,7 +2,7 @@
 public with sharing class AccountsControllerTest {
 
     @TestSetup
-    static void setup(){
+    static void setup() {
         
         List<Account> accounts = new List<Account>();
         Account account = new Account(Name = 'Test', Rating = 'Cold');
